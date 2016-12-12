@@ -4,25 +4,30 @@ import java.io.*;
 
 public class ShowTextFile{
 	public static void main(String[] args) {
+
+		// 0. データを準備する
+		String fileName = args[0];
+		FileReader inFile;
+
 		try{
 
-			// 1. データを準備
-			File f            = new File( args[0] );	// ファイル名を入力
-			FileReader fr     = new FileReader( f );
-			BufferedReader br = new BufferedReader( fr );
+			// 1. ファイルを開く
+			inFile = new FileReader( fileName );
+			System.out.println("file open...done.");
 
-			// 2. ファイルを読み取る
-			int data = br.read();
+			// 無限ループ( 2. 読み込みは "while"文 の中で行っている )
+			int data = 0;
+			while( ( data = inFile.read() ) != -1 ){
 
-			// 3. 読み取った結果を表示する
-			System.out.print( (char)data );
+				// 3. 出力する
+				System.out.print( (char)data );
+			}
 
-			// 3. ファイルを閉じる
-			br.close();
+			// 4. 閉じる
+			inFile.close();
 
-		// 例外処理
 		} catch( IOException e ){
-			System.out.println("エラー");
+			System.out.println("エラーです");
 			e.printStackTrace();
 		}
 	}
