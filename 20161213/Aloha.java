@@ -4,9 +4,9 @@ public class Aloha{
 		// 1.
 		for( int i=0; i<20; i++ ){
 			if ( i%3 == 0 ){
-				System.out.println(i+": ALOHA!");
+				System.out.println(i + ": " + args[0] );
 		} else {
-				System.out.println(i+": Hello!");
+				System.out.println(i+": " + args[1] );
 			}
 		}
 	}
