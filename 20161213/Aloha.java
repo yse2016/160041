@@ -2,9 +2,8 @@ public class Aloha{
 	public static void main(String[] args) {
 
 		// 1.
-		System.out.println("ALOHA!");
-
-		// 2.
-		System.out.println("アロハ！");
+		for( int i=0; i<20; i++ ){
+			System.out.println(i+": ALOHA!");
+		}
 	}
 }
