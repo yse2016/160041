@@ -3,7 +3,11 @@ public class Aloha{
 
 		// 1.
 		for( int i=0; i<20; i++ ){
-			System.out.println(i+": ALOHA!");
+			if ( i%3 == 0 ){
+				System.out.println(i+": ALOHA!");
+		} else {
+				System.out.println(i+": Hello!");
+			}
 		}
 	}
 }
