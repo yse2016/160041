@@ -44,22 +44,18 @@ class AlohaWindowMan{
 		frame.setVisible(true);
 	}
 
-class MyButton extends JButton implements ActionListener{
-	// コンストラクタ
-	public MyButton( String str ){
-		super( str );
-		addActionListener(this);
-	}
 
-	// ↓クリックした時の処理
-	public void ActionPerformed( ActionEvent ae ){
-		fileNameField.setText("Hello");
-	}
-}
 
-	// クリックした時の処理
-	public void ActionPerformed( ActionEvent ae ){
-		// フィールドを書き換える
-		fileNameField.setText("");
+	class MyButton extends JButton implements ActionListener{
+		// コンストラクタ
+		public MyButton( String str ){
+			super( str );
+			addActionListener(this);
+		}
+
+		// ↓クリックした時の処理
+		public void actionPerformed( ActionEvent ae ){
+			fileNameField.setText("");
+		}
 	}
 }
