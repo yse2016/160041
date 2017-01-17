@@ -139,8 +139,8 @@ class TextEditorMan implements ActionListener{
 				String text_File_Name = file_Name.getText();
 
 				// データを準備する
-				FileWriter fw;		// ファイル保存関連
-				PrintWriter pw;
+				FileWriter fw = null;		// ファイル保存関連
+				PrintWriter pw = null;
 
 				try{
 					// ファイルを開く
@@ -156,7 +156,7 @@ class TextEditorMan implements ActionListener{
 				// 例外処理
 				} catch( IOException e ){
 					System.out.println("エラー");
-				}/* Finally {
+				} finally {
 					// ファイルを閉じる
 					try{
 						fw.close();
@@ -164,7 +164,7 @@ class TextEditorMan implements ActionListener{
 					} catch( IOException e ){
 						System.out.println("エラー");
 					}
-				}*/
+				}
 			}
 	}
 }
