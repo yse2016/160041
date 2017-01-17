@@ -103,7 +103,7 @@ class TextEditorMan implements ActionListener{
 				if( ret == JFileChooser.APPROVE_OPTION ){
 
 					// 選ばれたファイル
-					File file = fc.getSelectedFIle();
+					File file = fc.getSelectedFile();
 
 					// ファイル名、保存場所を調べる
 					text_File_Name = file.getAbsolutePath();
@@ -156,7 +156,7 @@ class TextEditorMan implements ActionListener{
 				// 例外処理
 				} catch( IOException e ){
 					System.out.println("エラー");
-				} Finally {
+				}/* Finally {
 					// ファイルを閉じる
 					try{
 						fw.close();
@@ -164,7 +164,7 @@ class TextEditorMan implements ActionListener{
 					} catch( IOException e ){
 						System.out.println("エラー");
 					}
-				}
+				}*/
 			}
 	}
 }
