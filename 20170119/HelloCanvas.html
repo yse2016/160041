@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Hello Canvas</title>
+	<style type="text/css">
+		canvas{
+			background-color: #808080;
+			border-style: solid;
+		}
+	</style>
+</head>
+<body>
+	<h1>Canvas</h1>
+	<hr>
+	<canvas id="canvas" width="1024" height="1024"></canvas>
+
+	<script>
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+
+		// 四角形を描く
+			// 塗りつぶしの四角形
+			ctx.fillStyle = "rgb( 255, 128, 0 )";	// 色
+			ctx.fillRect( 100, 100, 256, 128 );	// x座標,y座標,横幅,縦幅
+
+			// 枠線だけの四角系
+			ctx.fillStyle = "rgb( 0, 0, 0 )";
+			ctx.strokeRect( 200, 200, 128, 256 );
+
+			// 切り抜き
+			ctx.fillStyle = "rgb( 0, 0, 0 )";
+			ctx.clearRect( 128, 128, 64, 64 );
+
+			ctx.fillStyle = "rgb( 0, 128, 128 )";
+			ctx.fillRect( 512, 512, 256, 256 );
+
+			ctx.fillStyle = "rgb( 0, 0, 0 )";
+			ctx.strokeRect( 500, 640, 128, 64 );
+
+			ctx.fillStyle = "rgba( 0, 0, 0 )";
+			ctx.clearRect( 550, 680, 64, 64 );
+
+			ctx.fillStyle = "rgba( 255, 0, 0, 0.5)";	// rgba: 透明
+			ctx.fillRect( 128, 700, 320, 50 );
+
+			ctx.fillStyle = "rgb( 0, 0, 0 )";
+			ctx.strokeRect( 128, 700, 64, 64 );
+
+			ctx.fillStyle = "rgb( 0, 0, 0 )";
+			ctx.clearRect( 200, 700, 32, 64 );
+
+			ctx.fillStyle = "rgba( 255, 255, 0, 0.25 )";
+			ctx.fillRect( 512, 250, 64, 192 );
+
+		// 三角形を描く
+			// 1. ←
+			ctx.beginPath();
+			ctx.moveTo( 75, 500 );	// 最初の点
+			ctx.lineTo( 100, 525 );	// 2番目の点
+			ctx.lineTo( 100, 475 );	// 3番目の点
+			ctx.fill();				// 色を付ける
+			ctx.closePath();
+
+			// 2. →
+			ctx.moveTo( 150, 500 );
+			ctx.lineTo( 125, 525 );
+			ctx.lineTo( 125, 475 );
+			ctx.closePath();		// パスを閉じる
+			ctx.stroke();			// 線だけで描く
+
+			// 3. ↓
+			ctx.moveTo( 100, 550 );
+			ctx.lineTo( 125, 550 );
+			ctx.lineTo( 112, 575 );
+			ctx.closePath();		// パスを閉じる
+			ctx.stroke();			// 線だけで描く
+
+			// 4. ↑
+			ctx.moveTo( 100, 450 );
+			ctx.lineTo( 112, 425 );
+			ctx.lineTo( 125, 450 );
+			ctx.closePath();
+			ctx.stroke();
+	</script>
+</body>
+
+
+</html>

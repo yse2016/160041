@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Hello Canvas</title>
+	<style type="text/css">
+		canvas{
+			background-color: #808080;
+			border-style: solid;
+		}
+	</style>
+</head>
+<body>
+	<h1>Canvas2: arc</h1>
+	<hr>
+	<canvas id="canvas" width="1024" height="1024"></canvas>
+
+	<script>
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+
+		// 円弧、円を描く
+
+			ctx.beginPath();
+			ctx.fillStyle = "rgb( 231, 225, 143 )";
+			ctx.arc( 200, 200, 100, 0, Math.PI*0.5, true );
+			 // arc( x, y, radius, startAngle, endAngle, anticlockwise );
+			ctx.closePath();
+			ctx.fill();
+
+			ctx.beginPath();
+			ctx.fillStyle = "rgb( 128, 48, 0 )";
+			ctx.moveTo( 400, 400 );
+			ctx.arc( 200, 200, 100, 0, Math.PI*0.5, false );
+			ctx.closePath();
+			ctx.fill();
+			ctx.stroke();
+
+		// ベジエ曲線を描く
+			ctx.beginPath();
+			ctx.moveTo( 256, 256 );
+			ctx.bezierCurveTo( 90, 180, 165, 165, 150, 150 );
+			 // bezierCurveTo(cp1x, cp1y,  cp2x, cp2y,  x, y);
+			ctx.stroke();
+
+
+	</script>
+</body>
+
+
+</html>
