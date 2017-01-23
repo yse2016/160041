@@ -85,15 +85,21 @@ class IdeanMan implements ActionListener{
 	}
 
 	public void actionPerformed( ActionEvent ae ){
+		// 配列
+		String[] idea1 = {"A","B","C"};
+		String[] idea2 = {"1","2","3"};
+
 		// コマンドを調べる
 		String cmd = ae.getActionCommand();
 
 		// 各ボタンがクリックされた時の処理
 			// btn_Idea
 			if( cmd.equals("idea")){
+				// 配列からデータを持ってくる
+				idea_Name1.setText( idea1[1] );
+				idea_Name2.setText( idea2[1] );
 
-
-			// bnt_Save
+			// btn_Save
 			} else if( cmd.equals("save")){
 				// ファイル名を調べる
 				String text_File_Name = file_Name.getText();
@@ -113,7 +119,9 @@ class IdeanMan implements ActionListener{
 					String data3 = memo_Area.getText();
 
 					// ファイルに書き込み、保存
-					pw.println( data1 +" + "+ data2 + memo_Area );
+					pw.println( data1 +" + "+ data2 );
+					pw.println("↓");
+					pw.println( data3 );
 
 				// 例外処理
 				} catch( IOException e ){
