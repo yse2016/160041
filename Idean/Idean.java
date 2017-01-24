@@ -5,8 +5,10 @@
 		- ボタン
 			- 単語2個表示ボタン
 			- メモを保存するためのボタン
-		- 単語を表示する場所( 2つ )
-		- メモを入力する場所
+		- テキストフィールド
+			- 単語を表示する場所( 2つ )
+		- テキストエリア
+			- メモを入力する場所
 */
 
 import java.awt.*;
@@ -42,7 +44,7 @@ class IdeanMan implements ActionListener{
 		// フレームを作る
 		frame = new JFrame("Idean");
 		frame.setLocation( 600, 250 );
-		frame.setSize( 512, 512 );
+		frame.setSize( 512, 275 );
 
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
@@ -86,7 +88,7 @@ class IdeanMan implements ActionListener{
 
 			// window に panel を載せる
 			Container con = frame.getContentPane();
-			con.setLayout( new GridLayout( 2, 1 ) );
+			con.setLayout( new GridLayout( 1, 1 ) );
 			con.add( field_Panel );
 
 		// window に表示
@@ -96,8 +98,8 @@ class IdeanMan implements ActionListener{
 	public void actionPerformed( ActionEvent ae ){
 		// 配列関連
 			// 配列
-			String[] idea1 = {"ペン","水素","片栗粉"};
-			String[] idea2 = {"りんご","酸素","鶏肉"};
+			String[] idea1 = {"ペン","水素","片栗粉","ちくわ","時計","チョコレート","音楽","トランプ","シイタケ"};
+			String[] idea2 = {"りんご","酸素","鶏肉","パフェ","カレンダー","バナナ","ゲーム","アメリカ","こんにゃく"};
 
 			// 配列からリストに変換
 			List<String> list1 = Arrays.asList( idea1 );
