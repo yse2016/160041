@@ -5,13 +5,17 @@
 		- ボタン
 			- 単語2個表示ボタン
 			- メモを保存するためのボタン
-		- 単語を表示するテキストフィールド( 2つ )
+		- 単語を表示する場所( 2つ )
+		- メモを入力する場所
 */
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Idean{
 	public static void main(String[] args) {
@@ -24,24 +28,25 @@ public class Idean{
 class IdeanMan implements ActionListener{
 	// field
 	JFrame frame;
-	JTextField idea_Name1;
+	JTextField idea_Name1;	// アイデア出力欄
 	JTextField idea_Name2;
-	JTextField file_Name;
-	JTextArea memo_Area;
+	JTextField file_Name;	// ファイル名入力欄
+	JTextArea memo_Area;	// メモ欄
 	JPanel field_Panel;
-	JButton btn_Idea;
-	JButton btn_Save;
+	JButton btn_Idea;		// アイデア表示ボタン
+	JButton btn_Save;		// ファイル保存ボタン
+	JLabel label_Plus;
 
 	// method
 	public IdeanMan(){
 		// フレームを作る
 		frame = new JFrame("Idean");
-		frame.setLocation( 600, 300 );
+		frame.setLocation( 600, 250 );
 		frame.setSize( 512, 512 );
 
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
-		// テキストフィールド,パネル,ボタンを作る
+		// テキストフィールド,パネル,ボタン,ラベルを作る
 			// アイデア出力欄( idea_Name1, idea_Name2 )
 			idea_Name1 = new JTextField("ここにアイデアが出ます",15);
 			idea_Name2 = new JTextField("ここにアイデアが出ます",15);
@@ -66,9 +71,13 @@ class IdeanMan implements ActionListener{
 				btn_Save.addActionListener(this);
 				btn_Save.setActionCommand("save");
 
+			// ラベル(window に表示するテキスト)
+			label_Plus = new JLabel("+");
+
 		// 載せる
 			// panel に field を載せる
 			field_Panel.add( idea_Name1 );
+			field_Panel.add( label_Plus );
 			field_Panel.add( idea_Name2 );
 			field_Panel.add( btn_Idea );
 			field_Panel.add( memo_Area );
@@ -76,7 +85,7 @@ class IdeanMan implements ActionListener{
 			field_Panel.add( btn_Save );
 
 			// window に panel を載せる
-			Container con =frame.getContentPane();
+			Container con = frame.getContentPane();
 			con.setLayout( new GridLayout( 2, 1 ) );
 			con.add( field_Panel );
 
@@ -85,22 +94,39 @@ class IdeanMan implements ActionListener{
 	}
 
 	public void actionPerformed( ActionEvent ae ){
-		// 配列
-		String[] idea1 = {"A","B","C"};
-		String[] idea2 = {"1","2","3"};
+		// 配列関連
+			// 配列
+			String[] idea1 = {"ペン","水素","片栗粉"};
+			String[] idea2 = {"りんご","酸素","鶏肉"};
+
+			// 配列からリストに変換
+			List<String> list1 = Arrays.asList( idea1 );
+			List<String> list2 = Arrays.asList( idea2 );
+
+			// リストの並びをシャッフル
+			Collections.shuffle( list1 );
+			Collections.shuffle( list2 );
+
+			// list から配列に戻す
+			String[] array1 = (String[])list1.toArray(new String[list1.size()]);
+			String[] array2 = (String[])list2.toArray(new String[list2.size()]);
+
+			// シャッフルされた配列の先頭を取得
+			String result1 = array1[0];
+			String result2 = array2[0];
 
 		// コマンドを調べる
 		String cmd = ae.getActionCommand();
 
 		// 各ボタンがクリックされた時の処理
 			// btn_Idea
-			if( cmd.equals("idea")){
+			if( cmd.equals("idea") ){
 				// 配列からデータを持ってくる
-				idea_Name1.setText( idea1[1] );
-				idea_Name2.setText( idea2[1] );
+				idea_Name1.setText( result1 );
+				idea_Name2.setText( result2 );
 
 			// btn_Save
-			} else if( cmd.equals("save")){
+			} else if( cmd.equals("save") ){
 				// ファイル名を調べる
 				String text_File_Name = file_Name.getText();
 
@@ -113,7 +139,7 @@ class IdeanMan implements ActionListener{
 					fw = new FileWriter( text_File_Name );
 					pw = new PrintWriter( fw );
 
-					// 2つのアイデアフィールドを読み取る
+					// 3つのフィールドを読み取る
 					String data1 = idea_Name1.getText();
 					String data2 = idea_Name2.getText();
 					String data3 = memo_Area.getText();
