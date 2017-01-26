@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<mete charset="utf-8">
+	<title>createJS</title>
+</head>
+<style>
+	canvas{
+		background-color: #aaaaaa;
+	}
+</style>
+<body>
+	<h1>createJSの練習</h1>
+	<hr>
+
+	<canvas id="myCanvas" width="640" height="640"></canvas>
+
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js">
+	</script>
+	<script>
+		window.addEventListener('load',init);
+		function init(){
+			// stage オブジェクトを作る
+			var stage = new createjs.Stage("myCanvas");
+
+			// shape オブジェクト(図形のもとを作る)
+			//var shikaku = new createjs.Shape();
+			//var maru = new createjs.Shape();
+			var shape = new createjs.Shape();
+			var star = new createjs.Shape();
+
+			// 角丸四角形を描く
+			shape.graphics.beginFill("#ff0000");
+			shape.graphics.drawRoundRect( 50, 50, 100, 100, 20, 20 );
+
+			// 星を描く
+			star.graphics.beginFill("#ff0000");
+			star.graphics.drawPolyStar( 0, 0, 75, 5, 0.6, -90 );
+
+			// 文字を表示
+
+
+			/*
+			// 丸を描く
+				// 青の円
+				maru.graphics.beginFill("#0000ff");
+				//maru.graphics.setStrokeStyle(10);		// 線の太さ
+				maru.graphics.drawCircle( 100, 100, 50 );
+
+				// 緑の円
+				maru.graphics.beginFill("#000000");
+				maru.graphics.drawCircle( 200, 100, 50 );
+
+				// 赤の円
+				maru.graphics.beginFill("#ff0000");
+				maru.graphics.drawCircle( 300, 100, 50 );
+			*/
+
+			/*
+			// 四角形を描く
+			shikaku.graphics.beginFill("#ff80A0");
+			shikaku.graphics.drawRect( 100, 100, 100, 100 );
+
+			shikaku.rotation = 45;	// 角度を変える
+			shikaku.scaleX = 2.0;
+			shikaku.scaleY = 0.5;
+			*/
+
+			// stage に add する
+			//stage.addChild( shikaku );
+			//stage.addChild( maru );
+			stage.addChild( shape );
+			stage.addChild( star );
+
+			// 表示する
+			createjs.Ticker.on('tick', function(){
+				shape.x += 4;
+				shape.y += 2;
+				star.x += 3;
+				star.y += 5;
+				stage.update();
+			});
+		}
+	</script>
+</body>
+</html>
