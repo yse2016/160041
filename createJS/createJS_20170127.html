@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS</title>
+</head>
+<style>
+	canvas{
+		background-color: #808080;
+	}
+</style>
+<body>
+	<h1>createJSの練習_20170127</h1>
+	<hr>
+
+	<canvas id="myCanvas" width="480" height="640"></canvas>
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js">
+	</script>
+
+	<script>
+		window.addEventListener('load',init);
+		function init(){
+			// stage オブジェクト
+			var stage = new createjs.Stage("myCanvas");
+
+			// shape オブジェクト( 図形のもと )
+			var shape = new createjs.Shape();
+
+			//四角形を描く
+				// 色
+				shape.graphics.beginFill("#00ff80");
+				// 形
+				shape.graphics.drawRect( 0, 10, 50, 50 );
+
+			// stage に shapeを追加
+			stage.addChild( shape );
+
+			// 向きの変数( プラスは右向き )
+			var muki_x = 1;
+			var muki_y = 1;
+
+			// stage 表示を更新
+			createjs.Ticker.on('tick', function(){
+				// 座標を変更する( 向きの変数付き )
+				shape.x += 10 * muki_x;
+				shape.y += 10 * muki_y;
+
+				// 端まで到達したら逆方向に移動させる
+				// 	( 座標ではなく進行方向を変える )
+				// X座標↓
+				if( shape.x > 480 ){
+					muki_x = -1;
+					shape.x += 10 * muki_x;
+				}
+				if( shape.x < 0 ){
+					muki_x = 1;
+					shape.x += 10 * muki_x;
+				}
+				// Y座標↓
+				if( shape.y > 640 ){
+					muki_y = -1;
+					shape.y += 10 * muki_y;
+				}
+				if( shape.y < 0 ){
+					muki_y = 1;
+					shape.y += 10 * muki_y;
+				}
+				// 再び描画させる
+				stage.update();
+			});
+		}
+	</script>
+</body>
+</html>
