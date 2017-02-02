@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>createJS_20170202</title>
+  <style>
+    canvas{
+      background-color: #aaaaaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>createJS_20170202</h1>
+  <hr>
+  <canvas id="myCanvas" width="640" height="480"></canvas>
+  <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+  <script>
+    window.addEventListener("load", init);
+    function init() {
+      // Stageオブジェクトを作成。表示リストのルートになります。
+      var stage = new createjs.Stage("myCanvas");
+
+      // ランダム
+      var rdm = Math.random();
+
+      // 四角形を作成
+      var shape = new createjs.Shape();
+      shape.graphics.beginFill("DarkRed"); // 赤色で描画するように設定
+      shape.graphics.drawRect( 0, 0, 50, 50 );
+      stage.addChild(shape); // 表示リストに追加
+      shape.x = rdm * 550;
+      shape.y = rdm * 400;
+
+      // 点を作成
+      var dot = new createjs.Shape();
+      dot.graphics.beginFill("blue").drawCircle(0, 0, 5);
+      stage.addChild(dot); // 表示リストに追加
+
+      // 時間経過のイベント
+      createjs.Ticker.addEventListener("tick", handleTick);
+      function handleTick() {
+
+        // ドットのモーションを指定
+        dot.x = stage.mouseX;
+        dot.y = stage.mouseY;
+
+        // 四角形からみた相対座標に変換
+        var point = shape.globalToLocal(stage.mouseX, stage.mouseY);
+
+        // 四角形とドットがあたっているかを調べる
+        var isHit = shape.hitTest(point.x, point.y);
+
+        // あたっていれば
+        if (isHit == true) {
+          // 赤色で塗る
+          shape.graphics.clear()
+                  .beginFill("DarkRed")
+                  .drawRect( 0, 0, 50, 50 );
+        } else {
+          // 緑色で塗る
+          shape.graphics.clear()
+                  .beginFill("green")
+                  .drawRect( 0, 0, 50, 50 );
+        }
+        // Stageの描画を更新
+        stage.update();
+      }
+    }
+  </script>
+</body>
+</html>

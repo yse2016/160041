@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>createJS_20170202</title>
+	<style>
+		canvas{
+			background-color: #aaaaaa;
+		}
+	</style>
+</head>
+<body>
+	<h1>createJS_20170202</h1>
+	<hr>
+
+	<canvas id="myCanvas" width="640" height="480"></canvas>
+
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+	<script>
+		window.addEventListener('load', init);
+
+		function init() {
+			// stage ¤ò¤Ä¤¯¤ë
+			var stage = new createjs.Stage('myCanvas');
+
+			// shape ¤ò¤Ä¤¯¤ë
+			var shape = new createjs.Shape();
+			shape.graphics.beginFill("#ff0000");
+			shape.graphics.drawRect(0, 0, 100, 100);
+
+			// EventListener¤ò¤Ä¤±¤ë
+			shape.addEventListener('click', handleClick);
+
+			stage.enableMouseOver()
+			shape.addEventListener('mouseover', handleMouseover);
+
+			window.addEventListener('keydown', handleKeydown);
+
+
+			// ¤Î¤»¤ë
+			stage.addChild(shape);
+
+			// stage ¤ò¿ÉÒ•»¯¤¹¤ë, ¥¢¥Ë¥á©`¥·¥ç¥ó¤µ¤»¤ë
+			createjs.Ticker.on('tick', function(){
+
+				// var mx = stage.mouseX;   // ¥Þ¥¦¥¹¤Î×ù˜Ë
+				// var my = stage.mouseY;   // ¥Þ¥¦¥¹¤Î×ù˜Ë
+
+				// shape.x = mx;			// shape¤Î×ù˜Ë
+				// shape.y = my;			// shape¤Î×ù˜Ë
+
+				stage.update();
+			});
+
+			function handleClick(event) {
+				alert("ALOHA");
+			}
+
+			function handleMouseover(event){
+				alert("MOUSEOVER!");
+			}
+
+			function handleKeydown(event) {
+				alert(event.keyCode);
+			}
+		}
+	</script>
+
+</body>
+</html>
