@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>createjs_160041</title>
+</head>
+<style>
+	body{
+		background-color: #00FF78;
+	}
+
+	canvas{
+		background-color: #777777;
+	}
+</style>
+<body>
+	<h1>createjs_160041</h1>
+	<p>要件: </p>
+	<p>四角形が右に移動していき、それをClickするとcanvas内の別の場所へ移動し、その場所から再び移動を始めるもの</p>
+	<hr>
+
+	<canvas id="myCanvas" width="640" height="480"></canvas>
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+
+	<script>
+		window.addEventListener('load', init);
+		function init(){
+			// stage オブジェクトを生成
+			var stage = new createjs.Stage("myCanvas");
+
+			// 変数
+				// ランダム
+				var rdm = Math.random();
+				var rdm_y = rdm * 430;
+
+				// 向きの変数
+				var muki_x = 1;	// 正の数の時は右
+				var muki_y = 1; // 正の数の時は下 
+
+				// 図形の動くスピード
+				var speed = 7.5;
+
+			// shape オブジェクト( 図形の基 )を生成
+			var shape = new createjs.Shape();
+
+			// 四角形を生成
+				// 色
+				shape.graphics.beginFill("#FF0000");
+
+				// 場所,大きさ
+				shape.graphics.drawRect( 0, 0, 40, 40 );	
+				shape.y = rdm_y;	
+
+			// 表示リストに追加
+			stage.addChild( shape );
+
+			// 移動の関数
+			createjs.Ticker.on('tick',function(){
+				// 座標を変更する
+				shape.x += speed * muki_x;
+
+				// canvas の端まで到達したら
+				// 逆方向に移動させる
+					// 右から左
+					if( shape.x >= 600 && muki_x == 1 ){
+						muki_x = -1;
+					}
+					// 左から右
+					if( shape.x <= 0 && muki_x == -1 ){
+						muki_x = 1;
+					}
+
+				// stage の描画を更新
+				stage.update();
+			});
+
+			// shape に Click イベントを追加
+			shape.addEventListener('click', handleClick);
+
+			function handleClick(event){
+				// 場所を移動
+				shape.y = Math.random() * 430;
+			}
+		}
+		
+	</script>
+
+</body>
+</html>
