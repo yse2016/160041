@@ -23,16 +23,16 @@ public class Aloha{
 
 			// "Kyoko" をカウント
 			String target = "from";	// 調べたい単語
-			int num_Kyoko = 0;			// 調べた単語の数
+			int num_Target = 0;			// 調べた単語の数
 
 			for( int i = 0; i < num; i++ ){
 				if( kekka2[i].equals( target ) ){
-					num_Kyoko++;
+					num_Target++;
 				}
 			}
 
 			// "Kyoko" の数を出力
-			System.out.println( target + "の数: " + num_Kyoko );
+			System.out.println( target + "の数: " + num_Target );
 
 	}
 }
